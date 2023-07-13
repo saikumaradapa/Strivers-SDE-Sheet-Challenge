@@ -1,0 +1,16 @@
+def sort012(nums, n) :
+        # duch natonal flag problem  
+        left, mid, right = 0, 0, len(nums)-1
+        while mid <= right :
+            # if 0 found, swap left with mid and move one step+ both
+            if nums[mid] == 0 :
+                nums[mid], nums[left] = nums[left], nums[mid]
+                left += 1
+            # if 2 found, swap right with mid and move one step- for right 
+            # and don't move mid (it may be 0 or 1)
+            elif nums[mid] == 2 :
+                nums[mid], nums[right] = nums[right], nums[mid] 
+                right -= 1
+                mid -= 1
+
+            mid += 1
