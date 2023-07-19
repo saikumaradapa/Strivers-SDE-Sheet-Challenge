@@ -1,0 +1,13 @@
+def searchMatrix(mat: [[int]], target: int) -> bool:
+    # Write your code here.
+    i, j = 0, len(mat[0])-1
+    while i < len(mat) and j >= 0 :
+        if target == mat[i][j] :
+            return True 
+        elif target > mat[i][j] :
+            i += 1
+        else :
+            j -= 1
+    return False
+
+''' solution with O(log(m * n)) time complexity and linear space '''
