@@ -1,3 +1,36 @@
+class Solution:
+    def repeatedNumber(self, A):
+        xr = 0
+        for i in range(len(A)) :
+            xr ^= A[i]
+            xr ^= (i+1)
+        bitNo = 0
+        while True :
+            if ((1<<bitNo) & xr) != 0 :
+                break 
+            bitNo += 1
+        one, zero = 0, 0
+        for i in range(len(A)) :
+            if (1<<bitNo)&A[i] != 0 :
+                one ^= A[i]
+            else :
+                zero ^= A[i]
+            if (1<<bitNo)&(i+1) != 0 :
+                one ^= (i+1)
+            else :
+                zero ^= (i+1)
+        c = 0
+        for i in range(len(A)) :
+            if A[i] == one :
+                c += 1
+            if c == 2 :
+                return [one, zero] 
+        return [zero, one]
+''' bit manupulation solution : time O(N), space O(1) '''
+
+
+
+
 def missingAndRepeating(arr, n):
     s1, s2, sn1, sn2 = 0, 0, 0 ,0 
     for i in range(n) :
@@ -11,6 +44,7 @@ def missingAndRepeating(arr, n):
     x = (val1+val2)//2
     y = (val2-x)
     return [y, x]
+''' time O(N), space O(1) '''
 
 
 def missingAndRepeating(arr, n):
@@ -25,7 +59,7 @@ def missingAndRepeating(arr, n):
             mis = i
         if rep != -1 and mis != -1 :
             return [mis, rep]
-
+''' time O(N), space O(N) '''
 
 def missingAndRepeating(arr, n):
     for i in range(1, n+1) :
@@ -38,3 +72,4 @@ def missingAndRepeating(arr, n):
         elif c == 0 :
             mis = i
     return [mis, rep]
+''' time O(N^2), space O(1) '''
