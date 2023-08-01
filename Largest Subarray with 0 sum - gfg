@@ -1,0 +1,33 @@
+class Solution:
+    def maxLen(self, n, arr):
+        dit = {}
+        sum = 0
+        res = 0
+        for i in range(n) :
+            sum += arr[i]
+            if sum == 0:
+                res = i + 1
+            elif sum in dit :
+                res = max(res, i-dit[sum])
+            else :
+                dit[sum] = i
+        return res
+        
+''' time complexity O(nlogN) for tarversing O(N) and hashing O(logN)
+    space complexity O(N) '''
+
+##############################################################################################################
+
+
+class Solution:
+    def maxLen(self, n, arr):
+        res = 0
+        for i in range(n) :
+            sum = 0
+            for j in range(i,n) :
+                sum += arr[j]
+                if sum == 0 :
+                    res = max(res, j-i+1)
+        return res
+''' time complexity O(N^2) 
+    space complexity O(1) '''
