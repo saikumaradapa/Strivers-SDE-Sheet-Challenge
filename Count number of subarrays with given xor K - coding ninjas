@@ -1,0 +1,37 @@
+def subarraysWithSumK(a: [int], b: int) -> int:
+    dit = {}
+    dit[0] = 1
+    res = 0
+    xr = 0
+    for i in range(len(a)) :
+        xr = xr^a[i] 
+        
+        x = xr^b
+
+        if x in dit :
+            res += dit[x]
+        if xr in dit :
+            dit[xr] += 1
+        else :
+            dit[xr] = 1
+    return res
+            
+    ''' time complexity O(n) 
+        space complexity O(n) 
+        similar to 	Largest Subarray with K sum'''
+
+
+############################################################################################################################################################################
+
+def subarraysWithSumK(a: [int], b: int) -> int:
+    res = 0
+    for i in range(len(a)) :
+        xr = a[i]
+        if xr == b : res += 1
+        for j in range(i+1,len(a)) :
+            xr = xr^a[j] 
+            if xr == b :
+                res += 1
+            
+    return res
+''' brute force approach '''
