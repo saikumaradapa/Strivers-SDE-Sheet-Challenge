@@ -1,0 +1,31 @@
+def alternateNumbers(a : List[int]) -> List[int]:
+    res = a[:]
+    pos = 0
+    ng = 1
+    for i in a :
+        if i < 0 :
+            res[ng] = i
+            ng = ng+2
+        else :
+            res[pos] = i
+            pos = pos+2
+    return res
+
+############################################################################################################################################
+
+def alternateNumbers(a : List[int]) -> List[int]:
+    ng = []
+    pos = []
+    for i in a :
+        if i < 0  :
+            ng.append(i)
+        else :
+            pos.append(i)
+    k = 0
+    for i in range(len(pos)) :
+        a[k] = pos[i]
+        k += 1
+        a[k] = ng[i]
+        k += 1
+    return a
+''' time : O(2n) and space O(n) '''
