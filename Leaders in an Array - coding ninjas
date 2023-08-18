@@ -1,0 +1,32 @@
+# Superior Elements
+
+
+def superiorElements(nums : List[int]) -> List[int]:
+    res = []
+    for i in range(len(nums)) :
+        while res and res[-1] <= nums[i] :
+            res.pop()
+        res.append(nums[i])
+    return res[::-1]
+###############################################################################################################
+def superiorElements(nums : List[int]) -> List[int]:
+    res = [nums[-1]]
+    for i in range(len(nums)-2, -1, -1) :
+        if res[-1] < nums[i] :
+            res.append(nums[i])
+    return res
+
+
+###############################################################################################################
+
+def superiorElements(nums : List[int]) -> List[int]:
+    res = []
+    for i in range(len(nums)) :
+        flag = True
+        for j in range(i+1,len(nums)) :
+            if nums[i] <= nums[j] :
+                flag = False
+                break
+        if flag :
+            res.insert(0,nums[i])
+    return res
