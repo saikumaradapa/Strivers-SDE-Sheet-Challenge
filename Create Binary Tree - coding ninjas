@@ -1,0 +1,25 @@
+class Node:
+    def __init__(self, data=0, left=None, right=None):
+        self.data = data
+        self.left = left
+        self.right = right
+
+def createTree(arr: List[int]) -> Node:
+    if not arr : return None
+    root = Node(arr[0])
+
+    q = [root]
+    i = 1
+    while q and i < len(arr)  :
+        node = q.pop(0)
+        if i < len(arr) :
+            node.left = Node(arr[i])
+            q.append(node.left)
+        i += 1
+        if i < len(arr) :
+            node.right = Node(arr[i])
+            q.append(node.right)
+        i += 1
+    return root
+
+# the time complexity for the function is O(n), as each element in arr is processed once.
