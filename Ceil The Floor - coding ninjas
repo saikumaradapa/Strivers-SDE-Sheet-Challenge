@@ -1,0 +1,46 @@
+def ceilingInSortedArray(n, x, arr):
+    c,f = -1, max(arr)+1
+
+    for i in range(len(arr)) :
+        if arr[i] <= x and arr[i] > c :
+            c = arr[i]
+        if arr[i] >= x and arr[i] < f :
+            f = arr[i]
+    if f == max(arr)+1 : f = -1
+    return "{} {}".format(c,f)
+# time - O(n) and constant space 
+
+################################################################################################################################################
+
+def ceilingInSortedArray(n, x, arr):
+    arr.sort() 
+    n = len(arr)
+    def for_ceil(arr) :
+        l,r = 0, n-1
+        res = -1
+        while l<=r :
+            mid = (l+r)//2
+            if arr[mid] <= x :
+                res = arr[mid] 
+                l = mid+1
+            else :
+                r = mid-1
+        return res
+    def for_floar(arr) :
+        l,r = 0, n-1
+        res = -1
+        while l<=r :
+            mid = (l+r)// 2
+            if arr[mid] >= x :
+                res = arr[mid]
+                r = mid-1
+            else :
+                l = mid+1
+        return res
+    c = for_ceil(arr)
+    f = for_floar(arr)
+    return "{} {}".format(c,f)
+
+# time - O(logn) and constant space 
+
+                
