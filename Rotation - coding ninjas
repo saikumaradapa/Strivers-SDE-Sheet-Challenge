@@ -1,0 +1,32 @@
+def findKRotation(arr: [int]) -> int:
+    l,r = 0, len(arr)-1
+    while l<r :
+        mid = (l+r)//2
+        if arr[mid] > arr[r] :
+            l = mid+1
+        else :
+            r = mid
+    return l
+# time complexity : O(logn)
+# space complexity : O(1)
+
+############################################################################################################################
+
+def findKRotation(arr: [int]) -> int:
+    # Find the index of the minimum element
+    return arr.index(min(arr))
+# time complexity : O(n)
+# space complexity : O(1) 
+
+############################################################################################################################
+
+def findKRotation(arr : [int]) -> int:
+    res = 0
+    while arr[0] > arr[-1] :
+        res += 1
+        temp = arr.pop(0)
+        arr.append(temp)
+    return res
+
+# time complexity : O(n^2)
+# space complexity : O(1) 
