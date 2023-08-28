@@ -1,0 +1,28 @@
+# binary search 
+def NthRoot(n: int, m: int) -> int:  
+    i = 1
+    ans = 1
+    while i ** n <= m :
+        ans = i
+        i += 1     
+    return ans if ans**n == m else -1
+''' time complexity : O(nlogn) for calculating pow-logn
+    space complexity : O(1)
+'''
+
+
+def NthRoot(n: int, m: int) -> int:
+    l,r = 1,m
+    while l<=r :
+        mid = (l+r)//2 
+        ans = mid**n
+        if ans == m :
+            return mid
+        elif ans > m :
+            r = mid-1
+        else :
+            l = mid+1
+    return -1
+''' time complexity : O(logm * logn) 
+    space complexity : O(1)
+'''
