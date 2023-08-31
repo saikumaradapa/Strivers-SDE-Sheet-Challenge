@@ -10,7 +10,9 @@ def ceilingInSortedArray(n, x, arr):
     return "{} {}".format(c,f)
 # time - O(n) and constant space 
 
+
 ################################################################################################################################################
+
 
 def ceilingInSortedArray(n, x, arr):
     arr.sort() 
