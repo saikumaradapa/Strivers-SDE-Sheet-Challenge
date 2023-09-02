@@ -1,0 +1,47 @@
+def aggressiveCows(stalls, k):
+    stalls.sort()
+    def possible(p) :
+        i,j = 0, 1
+        res = 1
+        while j < len(stalls) :
+            if stalls[j]-stalls[i] >= p :
+                res += 1
+                i = j
+            j += 1
+        return res >= k
+
+    res = 0
+    for i in range(1,(stalls[-1]-stalls[0]+1)) :
+        if not possible(i) :
+            return i-1
+    return stalls[-1]-stalls[0]
+
+''' time complexity : O(n^2)
+    space complexity : O(1)
+'''
+
+################################################################################################################
+
+def aggressiveCows(stalls, k):
+    stalls.sort()
+    def possible(p) :
+        i,j = 0, 1
+        res = 1
+        while j < len(stalls) :
+            if stalls[j]-stalls[i] >= p :
+                res += 1
+                i = j
+            j += 1
+        return res >= k
+    l,r = 1,stalls[-1] 
+    while l<=r :
+        m = (l+r)//2
+        if not possible(m) :
+            r = m - 1
+        else : 
+            l = m + 1
+    return r
+
+''' time complexity : O(nlogn)
+    space complexity : O(1)
+'''
