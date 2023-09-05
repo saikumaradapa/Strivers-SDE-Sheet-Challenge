@@ -20,9 +20,7 @@ def aggressiveCows(stalls, k):
     space complexity : O(1)
 '''
 
-
 ################################################################################################################
-
 
 def aggressiveCows(stalls, k):
     stalls.sort()
