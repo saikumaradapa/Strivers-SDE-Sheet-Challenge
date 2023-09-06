@@ -1,0 +1,56 @@
+def findPages(arr: [int], n: int, m: int) -> int:
+    if n < m : return -1
+    def pos(page) :
+        res = 1
+        curr = 0
+        for i in range(n) :
+            if curr + arr[i] <= page :
+                curr += arr[i]
+                
+            else :
+                curr = arr[i]
+                res += 1
+                
+        return res
+        
+    l,r = max(arr), sum(arr)
+    while l<=r  :
+        mid = (l+r)//2
+        if pos(mid) > m :
+            l = mid + 1
+        else :
+            r = mid - 1
+    return l
+
+
+''' time complexity : O(log(sum(arr)-max(arr)) * n)
+    space complexity : O(1)
+'''
+
+
+################################################################################################################################
+
+
+
+def findPages(arr: [int], n: int, m: int) -> int:
+    if n < m : return -1
+    def pos(page) :
+        res = 1
+        curr = 0
+        for i in range(n) :
+            if curr + arr[i] <= page :
+                curr += arr[i]
+                
+            else :
+                curr = arr[i]
+                res += 1
+                
+        return res
+        
+    for i in range(max(arr), sum(arr)+1) :
+        if pos(i) == m : return i
+    return max(arr)
+
+''' time complexity : O(sum(arr)-max(arr) * n)
+    space complexity : O(1)
+'''
