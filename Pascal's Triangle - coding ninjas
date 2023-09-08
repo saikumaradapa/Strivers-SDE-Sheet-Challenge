@@ -13,6 +13,7 @@ def pascalTriangle(n : int) -> List[List[int]]:
 
 
 
+
 from typing import *
 from math import comb 
 def pascalTriangle(n : int) -> List[List[int]]:
