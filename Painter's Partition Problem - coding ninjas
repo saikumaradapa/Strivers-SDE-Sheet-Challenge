@@ -1,0 +1,26 @@
+# binary search 
+def findLargestMinDistance(boards:list, k:int):
+    def pos(val) :
+        res = 1
+        curr = 0
+        for i in range(len(boards)) :
+            if curr + boards[i] <= val :
+                curr += boards[i]
+            else :
+                res += 1
+                curr = boards[i]
+        return res
+
+    l,r = max(boards), sum(boards)
+    while l<= r :
+        mid = (l+r)//2
+
+        if pos(mid) > k :
+            l = mid + 1
+        else :
+            r = mid - 1
+    return l 
+
+''' time complexity : O(log(sum(boards)-max(boards)) * n)
+    space complexity : O(1)
+'''
