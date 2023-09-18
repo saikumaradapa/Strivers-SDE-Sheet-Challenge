@@ -1,0 +1,35 @@
+def rowWithMax1s(matrix: [[int]], n: int, m: int) -> int:
+    res = 0
+    idx = -1
+    for row in range(n) :
+        l,r = 0, m-1
+        while l<r :
+            mid = (l+r)//2
+            if matrix[row][mid] == 0 :
+                l = mid+1
+            else : 
+                r = mid
+        ones = m-l
+        if ones > res :
+            res = ones 
+            idx = row
+    return idx
+
+
+'''time complexity : O(n×log(m))
+    space complexity : O(1)
+'''
+
+#######################################################################################################################
+def rowWithMax1s(matrix: [[int]], n: int, m: int) -> int:
+    res = 0
+    idx = -1
+    for i,row in enumerate(matrix) :
+        c = sum(x for x in row) 
+        if c > res :
+            res = c
+            idx = i
+    return idx
+'''time complexity : O(n * m)
+    space complexity : O(1)
+'''
