@@ -1,0 +1,55 @@
+def countSubStrings(s: str, k: int) -> int:
+    def mostKDist(s,k) :
+        count = 0
+        distChars = 0
+        freq = {}
+        left = 0
+        for right in range(len(s)) :
+            if s[right] not in freq or freq[s[right]] == 0 :
+                distChars += 1
+            freq[s[right]] = freq.get(s[right],0) +1
+
+            while distChars > k :
+                freq[s[left]] -= 1
+                if freq[s[left]] == 0 :
+                    distChars -= 1
+                left += 1
+            count += right - left + 1
+        return count 
+    return mostKDist(s,k)-mostKDist(s,k-1)  
+
+''' time complexity : O(n) 
+    space complexity : O(n)
+'''
+
+#################################################################################################################
+
+def countSubStrings(s: str, k: int) -> int:
+    res = 0
+    for i in range(len(s)) :
+        arr = [0] * 26 
+        for j in range(i,len(s)) : 
+            if arr[ord(s[j])-ord('a')] == 0 : 
+                arr[ord(s[j])-ord('a')] = 1
+            if sum(arr) == k :
+                res += 1
+            elif sum(arr) > k : break            
+    return res
+
+''' time complexity : O(n^2) 
+    space complexity : O(n)
+'''
+
+#################################################################################################################
+
+def countSubStrings(s: str, k: int) -> int:
+    res = 0
+    for i in range(len(s)) :
+        for j in range(i,len(s)) :                        
+            if len(set(s[i:j+1])) == k :
+                res += 1
+    return res
+
+''' time complexity : O(n^3) 
+    space complexity : O(n)
+'''
