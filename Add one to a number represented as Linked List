@@ -1,0 +1,54 @@
+def helper(node) :
+    if not node.next :
+        v = node.data + 1
+        node.data = v % 10
+        return v // 10
+    c = helper(node.next)
+    v = node.data + c
+    node.data = (v) % 10
+    return (v) // 10
+
+def addOne(head: Node) -> Node:
+    dummy = Node(data=1, next=head)
+
+    c = helper(head)
+    if c == 1 :  
+        return dummy
+    else :
+        return head
+
+''' time complexity : O(n)
+    space complexity : O(n) for recurrsion stack 
+'''
+
+################################################################################################################################################
+
+def reverse(h) :
+    prev = None 
+    curr = h 
+    while curr :
+        temp = curr.next
+        curr.next = prev        
+        prev = curr
+        curr = temp
+    return prev
+
+
+def addOne(head: Node) -> Node:
+    h = reverse(head)
+    dummy = h 
+    c = 1
+    while h :
+        v = h.data
+        # print((v+c) % 10, '<--')
+        h.data = (v+c) % 10
+        c = (v+c) // 10
+        prev = h
+        h = h.next 
+    if c != 0 :
+        prev.next = Node(c)
+    return reverse(dummy)
+
+''' time complexity : O(3n)
+    space complexity : O(1) 
+'''
