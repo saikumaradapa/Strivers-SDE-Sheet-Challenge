@@ -1,0 +1,22 @@
+def removeDuplicates(head: Node) -> Node:
+    h = head
+    prev = None 
+    while h :
+        if h.data == prev :
+            preNode = h.prev
+            nextNode = h.next 
+            if h == head :
+                h = head.next 
+            elif not h.next :
+                preNode.next = None 
+            else :
+                preNode.next = nextNode
+                nextNode.prev = preNode
+                
+        prev = h.data
+        h = h.next 
+    return head 
+
+''' time complexity : O(n)            
+    space complexity : O(1)
+'''
