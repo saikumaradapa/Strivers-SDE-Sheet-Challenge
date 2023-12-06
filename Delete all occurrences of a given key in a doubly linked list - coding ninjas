@@ -1,0 +1,20 @@
+def deleteAllOccurrences(head: Node, k: int) -> Node:
+    h = head 
+    while head :
+        prevNode = head.prev
+        nextNode = head.next 
+        if head.data == k :
+            if head == h :
+                h = head.next 
+            elif not head.next :
+                prevNode.next = None                 
+            else :
+                prevNode.next = nextNode
+                nextNode.prev = prevNode
+        head = head.next 
+    return h
+
+            
+''' time complexity : O(n)            
+    space complexity : O(1)
+'''
