@@ -1,0 +1,22 @@
+def findPairs(head: Node, k: int) -> [[int]]:
+    left = head
+    right = head 
+    while right.next :
+        right = right.next 
+    # print(left.data, right.data)
+    res = []
+    while left.data < right.data :
+        if left.data + right.data == k :
+            res.append([left.data, right.data])
+            left = left.next 
+            right = right.prev
+        elif left.data + right.data < k :
+            left = left.next 
+        else :
+            right = right.prev
+    # print(res)   
+    return res
+
+''' time complexity : O(n)            
+    space complexity : O(1)
+'''
