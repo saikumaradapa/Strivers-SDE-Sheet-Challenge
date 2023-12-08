@@ -1,0 +1,58 @@
+def flatten(root):
+    def getMid(head) :
+        slow, fast = head, head.bottom
+        while fast and fast.bottom :
+            slow, fast = slow.bottom, fast.bottom.bottom
+        return slow
+
+    def merger(left, right) :
+        tail = dummy = Node(None)
+        while left and right :
+            if left.data <= right.data :
+                tail.bottom = left
+                left = left.bottom 
+            else :
+                tail.bottom = right
+                right = right.bottom 
+            tail = tail.bottom 
+        if left :
+            tail.bottom = left 
+        if right :
+            tail.bottom = right
+        return dummy.bottom         
+    
+    def sortLL(head):
+        if not head or not head.bottom :
+            return head 
+    
+        left, right = head, getMid(head)
+        temp = right.bottom 
+        right.bottom = None 
+        right = temp 
+    
+        left = sortLL(left)
+        right = sortLL(right)
+    
+        return merger(left, right) 
+    
+    h = root 
+    while h :
+        next = h.next 
+        h.next = None 
+        b = h
+        while b.bottom :
+            b = b.bottom
+        b.bottom = next
+        h = next
+    # return root
+    return sortLL(root)
+
+
+
+
+
+
+
+''' time complexity : O(n logn )
+    space complexity : O(n)  for recurrsive stack 
+'''
