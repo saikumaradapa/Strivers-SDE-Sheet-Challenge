@@ -1,0 +1,25 @@
+stack = list(range(100, -1, -1))
+
+def insertIntoStack(s, p):
+    if not s or s[-1] <= p:
+        s.append(p)
+        return s
+    v = s.pop()
+    insertIntoStack(s, p)
+    s.append(v)
+    return s
+
+def sortStack(stack):
+    n = len(stack)
+    if n <= 1:
+        return stack
+    peek = stack.pop()
+    sorted_stack = sortStack(stack)
+    sorted_stack = insertIntoStack(sorted_stack, peek)
+    return sorted_stack
+
+print(sortStack(stack))
+
+''' time complexity : O(n^2)
+    space complexity : O(n)
+'''
