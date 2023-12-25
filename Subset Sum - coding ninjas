@@ -1,0 +1,35 @@
+def isSubsetPresent(n:int, k: int, a: List[int]) -> bool:
+    cache = {}
+    n = len(a)
+    def helper(s, i) :
+        if (s,i) in cache :
+            return cache[(s,i)]
+        if s==k :
+            cache[(s,i)] = True 
+            return True 
+        if s > k or i == n :
+            cache[(s,i)] = False
+            return False
+        cache[(s,i)] = (helper(s, i+1) or helper(s+a[i], i+1))
+        return cache[(s,i)]
+    return helper(0,0)
+
+''' time complexity : O(n*k)
+    space complexity : O(n*k)
+'''
+
+
+def isSubsetPresent(n:int, k: int, a: List[int]) -> bool:
+    n = len(a)
+    def helper(s, i) :
+        if s == k :
+            return True 
+        if s > k :
+            return False 
+        if i == n : return False 
+        return (helper(s,i+1) or helper(s+a[i],i+1))
+    return helper(0, 0)
+
+''' time complexity : O(2^n)
+    space complexity : O(n)
+'''
