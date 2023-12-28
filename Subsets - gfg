@@ -1,0 +1,17 @@
+class Solution:
+    def subsets(self, A):
+        res = []
+        n = len(A)
+        def dfs(i, s, curr) :
+            if i >= n :
+                res.append(curr.copy())
+                return 
+            dfs(i+1, s, curr)            
+            dfs(i+1, s+A[i], curr+[A[i]])
+
+        dfs(0,0,[])
+        return sorted(res)
+
+''' time complexity : O(2^n)
+    space complexity : O(n)
+'''
