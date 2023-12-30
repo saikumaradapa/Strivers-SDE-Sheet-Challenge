@@ -1,0 +1,25 @@
+class Solution:
+    def findPath(self, mat, n):
+        res = []
+        seen = set()
+        def backtrack(i,j,path) :
+            # print(res)
+            if i==n-1 and j ==n-1 and mat[i][j]==1 :
+                res.append(path[:])
+                return 
+            if i<0 or j<0 or i>=n or j>=n or mat[i][j]==0 or (i,j) in seen:
+                return 
+            seen.add((i,j))
+            backtrack(i+1, j, path+"D") 
+            backtrack(i, j-1, path+"L")            
+            backtrack(i, j+1, path+"R")
+            backtrack(i-1, j, path+"U")  
+
+            seen.remove((i,j))
+    
+        backtrack(0,0,"")
+        return res
+        
+''' time complexity : O(3^n)
+    space complexity : O(n)
+'''
