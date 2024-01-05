@@ -1,0 +1,46 @@
+def allRootToLeaf(root) -> List[str]:
+    res = []
+    curr = []
+    def dfs(root) :
+        if not root :
+            return 
+        curr.append(str(root.data))
+        if not root.left and not root.right :
+            res.append(' '.join(curr))            
+        else :
+            dfs(root.left)
+            dfs(root.right)
+        curr.pop()
+    dfs(root)  
+    ' '.join(res)
+    return res
+
+''' time complexity : O(n)  
+    space complexity : O(n)
+''''
+
+#######################################################################################################################################################################################
+
+
+# returns list output 
+
+def allRootToLeaf(root) -> List[str]:
+    res = []
+    curr = []
+    def dfs(root) :
+        if not root :
+            return 
+        curr.append(str(root.data))
+        if not root.left and not root.right :
+            res.append(curr.copy())             
+        else :
+            dfs(root.left)
+            dfs(root.right)
+        curr.pop()
+    dfs(root)
+    print(res)
+    return []
+
+''' time complexity : O(n)  
+    space complexity : O(n)
+''''
