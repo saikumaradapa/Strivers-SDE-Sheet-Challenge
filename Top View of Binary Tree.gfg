@@ -1,0 +1,20 @@
+class Solution:
+    def topView(self,root):
+        q = [(root,0)]
+        dit = dict()
+        minIdx, maxIdx = 0,0
+        while q :
+            n = len(q)
+            for i in range(n) :
+                node,c = q.pop(0)
+                if node :
+                    if c not in dit  :
+                        dit[c] = node.data
+                    q.append((node.left, c-1))
+                    q.append((node.right, c+1))
+                    minIdx, maxIdx = min(minIdx, c), max(maxIdx, c)
+        return [dit[i] for i in range(minIdx, maxIdx+1)]
+
+''' time complexity : O(n)
+    space complexity : O(n)
+'''
