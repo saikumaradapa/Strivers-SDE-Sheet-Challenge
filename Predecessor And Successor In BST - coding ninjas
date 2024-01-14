@@ -1,0 +1,28 @@
+def pre(root, key) :
+    res = -1
+    while True :
+        if root.data >= key :
+            root = root.left 
+        else :
+            res = root.data
+            root = root.right
+        if not root :
+            return res 
+def sus(root, key) :
+    res = -1 
+    while True :
+        if root.data <= key :
+            root = root.right 
+        else :
+            res = root.data
+            root = root.left 
+        if not root :
+            return res
+
+def predecessorSuccessor(root, key):
+    return (pre(root, key), sus(root, key))
+
+
+''' time complexity : O(logn)
+    space complexity : O(1)
+'''
