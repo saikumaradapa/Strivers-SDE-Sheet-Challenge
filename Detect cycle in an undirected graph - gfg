@@ -1,0 +1,59 @@
+# DFS
+
+from typing import List
+class Solution:
+    def isCycle(self, V: int, adj: List[List[int]]) -> bool:
+        visited = [0] * V
+    
+        def dfs(node, parent):
+            visited[node] = 1
+            for curr in adj[node]:
+                if visited[curr] == 0 :
+                    if dfs(curr, node) :
+                        return True
+                elif curr != parent :
+                    return True 
+            return False                     
+    
+        for i in range(V):
+            if visited[i] == 0:
+                if dfs(i, -1) == True:
+                    return True
+        return False
+        
+''' time complexity : O(V + 2E)
+    space complexity : O(n)
+'''
+
+
+############################################################################################################################################################################################################
+
+# BFS
+
+from typing import List
+class Solution:
+    #Function to detect cycle in an undirected graph.
+    def isCycle(self, V: int, adj: List[List[int]]) -> bool:
+        visited = [0]*V 
+        
+        def detect(node) :
+            if visited[node] == 0 :
+                q = [(node, -1)]
+                while q :
+                    node, parentNode = q.pop(0)
+                    visited[node] = 1
+                    for curr in adj[node] :
+                        if visited[curr] == 0 :
+                            q.append((curr, node))
+                        elif curr != parentNode :
+                            return True                             
+            return False 
+            
+        for i in range(V) :
+            if detect(i) :
+                return True 
+        return False 
+                        
+''' time complexity : O(V + 2E)                2E is the degree of the undirected graph 
+    space complexity : O(V) 
+'''
