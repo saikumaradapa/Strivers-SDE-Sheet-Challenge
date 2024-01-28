@@ -1,0 +1,21 @@
+class Solution:
+    def dfs(self, node, adj, visited):
+        visited[node] = 1
+        for neighbor in range(len(adj[node])):
+            if adj[node][neighbor] == 1 and visited[neighbor] == 0:
+                self.dfs(neighbor, adj, visited)
+
+    def numProvinces(self, adj, V):
+        visited = [0] * len(adj)
+        res = 0
+        for i in range(len(adj)):
+            if visited[i] == 0:
+                res += 1
+                self.dfs(i, adj, visited)
+        return res
+
+        
+        
+''' time complexity : O(V^2)
+    space complexity : O(V)
+'''
