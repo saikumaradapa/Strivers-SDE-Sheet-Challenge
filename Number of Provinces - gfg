@@ -13,9 +13,42 @@ class Solution:
                 res += 1
                 self.dfs(i, adj, visited)
         return res
-
-        
-        
-''' time complexity : O(V^2)
+                
+''' time complexity : O(V^2)           with adj matrix form
     space complexity : O(V)
 '''
+
+######################################################################################################################################################################################## 
+
+class Solution:
+    def dfs(self, node, adj, visited):
+        for adjNode in adj[node]:
+            if visited[adjNode] == 0:
+                visited[adjNode] = 1
+                self.dfs(adjNode, adj, visited)
+    
+    def numProvinces(self, adj, V):
+        adjNew = [[] for _ in range(V)]
+        
+        for i in range(len(adj)):
+            for j in range(len(adj[0])):
+                if adj[i][j] == 1 and i != j:
+                    adjNew[i].append(j)
+                    adjNew[j].append(i)
+            
+        visited = [0] * V
+        res = 0
+        
+        for node in range(V):
+            if visited[node] == 0:
+                res += 1
+                visited[node] = 1
+                self.dfs(node, adjNew, visited)
+                
+        return res
+
+''' time complexity : O(V) + O(V + 2E)           with adj list form
+    space complexity : O(V)
+'''
+
+########################################################################################################################################################################################
