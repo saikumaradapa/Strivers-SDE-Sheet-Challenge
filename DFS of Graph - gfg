@@ -1,16 +1,16 @@
 class Solution:
     def dfsOfGraph(self, V, adj):
-        visited = [0] * V
         res = []
-        
-        def dfs(node) :
-            if visited[node] == 0 :
-                res.append(node)
-                visited[node] = 1
-                for val in adj[node] :
-                    dfs(val)
-        dfs(0)
-        return res
+        visited = [0] * V
+        self.dfs(0, adj, visited, res)
+        return res 
+    
+    def dfs(self, node, adj, visited, res):
+        if visited[node] == 0:
+            visited[node] = 1
+            res.append(node)
+            for adjNode in adj[node]:
+                self.dfs(adjNode, adj, visited, res)
                     
 ''' time complexity : O(V+E)
     space complexity : O(V)
