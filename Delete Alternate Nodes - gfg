@@ -1,0 +1,10 @@
+Problem Link : https://www.geeksforgeeks.org/problems/delete-alternate-nodes/1
+
+class Solution:
+    def deleteAlt(self, head):
+        curr = head
+        
+        while curr and curr.next:
+            curr.next = curr.next.next 
+            curr = curr.next
+        return head
