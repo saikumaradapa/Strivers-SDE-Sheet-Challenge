@@ -20,3 +20,8 @@ class Solution:
         l1.next = None
         l2.next = None
         return [h1.next, h2.next]
+
+
+''' time complexity : O(n)
+    space complexity : O(1)
+'''
