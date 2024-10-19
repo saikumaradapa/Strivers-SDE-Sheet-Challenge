@@ -1,0 +1,9 @@
+
+
+class Solution:
+    
+    def getSingle(self,arr):
+        res = 0 
+        for n in arr:
+            res ^= n
+        return res
